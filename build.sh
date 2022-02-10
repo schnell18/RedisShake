@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -o errexit
+export GOARCH=amd64
 
 # make sure we're in the directory where the project lives
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -37,8 +38,10 @@ info=$info","$t
 echo "[ BUILD RELEASE ]"
 BIN_DIR=$(pwd)/bin/
 cd src
-goos=(linux darwin windows)
-for g in "linux" "darwin" "windows";
+#goos=(linux darwin windows)
+# for g in "linux" "darwin" "windows";
+goos=(linux darwin)
+for g in "linux" "darwin";
 do
     echo "try build GOOS=$g"
     export GOOS=$g
